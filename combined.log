@@ -1,0 +1,8 @@
+{"message":"RFID: 134876245267 --- Type: Member --- Request: Open --- Time: Thu Apr 25 2019 11:15:21 GMT+0700 (Indochina Time) --- Succeed","level":"info"}
+{"message":"RFID: 134876245267 --- Type: Member --- Request: Open --- Time: Thu Apr 25 2019 11:15:42 GMT+0700 (Indochina Time) --- Failed","level":"info"}
+{"message":"RFID: 134876245267 --- Type: Member --- Request: Exit --- Time: Thu Apr 25 2019 11:16:11 GMT+0700 (Indochina Time) --- Succceed","level":"info"}
+{"message":"RFID: 134876245267 --- Type: Member --- Request: Exit --- Time: Thu Apr 25 2019 11:18:55 GMT+0700 (Indochina Time) --- Failed","level":"info"}
+{"message":"RFID: 69696923523 --- Type: Guest --- Request: Open --- Time: Thu Apr 25 2019 11:19:21 GMT+0700 (Indochina Time) --- Succceed","level":"info"}
+{"message":"RFID: 69696923523 --- Type: Guest --- Request: Open --- Time: Thu Apr 25 2019 11:19:30 GMT+0700 (Indochina Time) --- Failed","level":"info"}
+{"message":"RFID: 69696923523 --- Type: Guest --- Request: Exit --- Time: Thu Apr 25 2019 11:19:49 GMT+0700 (Indochina Time) --- Succceed","level":"info"}
+{"message":"RFID: 69696923523 --- Type: Unknown --- Request: Exit --- Time: Thu Apr 25 2019 11:20:10 GMT+0700 (Indochina Time) --- Failed","level":"info"}
