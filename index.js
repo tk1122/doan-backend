@@ -74,7 +74,13 @@ io.on("connection", async socket => {
         );
       }
     } else {
-      if (!memberSnapshot.docs[0].data().isCurrentlyIn && memberSnapshot.docs[0].data().subscribeUntil.getTime() > new Date().getTime()) {
+      if (
+        !memberSnapshot.docs[0].data().isCurrentlyIn &&
+        memberSnapshot.docs[0]
+          .data()
+          .subscribeUntil.toDate()
+          .getTime() > new Date().getTime()
+      ) {
         // Trường hợp mở cổng vào 2: Thành viên đang ngoài bãi va con trong thoi gian dang ky
 
         logger.info(
@@ -85,7 +91,9 @@ io.on("connection", async socket => {
         await membersRef.doc(memberSnapshot.docs[0].id).update({
           isCurrentlyIn: true,
           lastActivity: admin.firestore.Timestamp.fromDate(new Date()),
-          history: admin.firestore.FieldValue.arrayUnion(`Request: Open --- Time: ${new Date()} --- Succeed`)
+          history: admin.firestore.FieldValue.arrayUnion(
+            `Request: Open --- Time: ${new Date()} --- Succeed`
+          )
         });
       } else {
         // Trường hợp không mở cổng vào 2: Thành viên đang trong bãi
@@ -94,7 +102,9 @@ io.on("connection", async socket => {
         );
 
         await membersRef.doc(memberSnapshot.docs[0].id).update({
-          history: admin.firestore.FieldValue.arrayUnion(`Request: Open --- Time: ${new Date()} --- Failed`)
+          history: admin.firestore.FieldValue.arrayUnion(
+            `Request: Open --- Time: ${new Date()} --- Failed`
+          )
         });
       }
     }
@@ -138,7 +148,9 @@ io.on("connection", async socket => {
         await membersRef.doc(memberSnapshot.docs[0].id).update({
           isCurrentlyIn: false,
           lastActivity: admin.firestore.Timestamp.fromDate(new Date()),
-          history: admin.firestore.FieldValue.arrayUnion(`Request: Exit --- Time: ${new Date()} --- Succceed`)
+          history: admin.firestore.FieldValue.arrayUnion(
+            `Request: Exit --- Time: ${new Date()} --- Succceed`
+          )
         });
       } else {
         // Trường hợp không mở cổng ra 2: Thành viên đang ngoài bãi
@@ -148,7 +160,9 @@ io.on("connection", async socket => {
         );
 
         await membersRef.doc(memberSnapshot.docs[0].id).update({
-          history: admin.firestore.FieldValue.arrayUnion(`Request: Exit --- Time: ${new Date()} --- Failed`)
+          history: admin.firestore.FieldValue.arrayUnion(
+            `Request: Exit --- Time: ${new Date()} --- Failed`
+          )
         });
       }
     }

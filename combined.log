@@ -6,3 +6,8 @@
 {"message":"RFID: 69696923523 --- Type: Guest --- Request: Open --- Time: Thu Apr 25 2019 11:19:30 GMT+0700 (Indochina Time) --- Failed","level":"info"}
 {"message":"RFID: 69696923523 --- Type: Guest --- Request: Exit --- Time: Thu Apr 25 2019 11:19:49 GMT+0700 (Indochina Time) --- Succceed","level":"info"}
 {"message":"RFID: 69696923523 --- Type: Unknown --- Request: Exit --- Time: Thu Apr 25 2019 11:20:10 GMT+0700 (Indochina Time) --- Failed","level":"info"}
+{"message":"RFID: 456456452222 --- Type: Member --- Request: Open --- Time: Fri Apr 26 2019 15:07:50 GMT+0700 (Indochina Time) --- Succeed","level":"info"}
+{"message":"RFID: 456456452222 --- Type: Member --- Request: Exit --- Time: Fri Apr 26 2019 15:08:34 GMT+0700 (Indochina Time) --- Succceed","level":"info"}
+{"message":"RFID: 456456452222 --- Type: Member --- Request: Exit --- Time: Fri Apr 26 2019 15:08:43 GMT+0700 (Indochina Time) --- Failed","level":"info"}
+{"message":"RFID: 456456452222 --- Type: Member --- Request: Open --- Time: Fri Apr 26 2019 15:12:31 GMT+0700 (Indochina Time) --- Failed","level":"info"}
+{"message":"RFID: 456456452222 --- Type: Member --- Request: Open --- Time: Fri Apr 26 2019 15:12:54 GMT+0700 (Indochina Time) --- Succeed","level":"info"}
