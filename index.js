@@ -74,8 +74,8 @@ io.on("connection", async socket => {
         );
       }
     } else {
-      if (!memberSnapshot.docs[0].data().isCurrentlyIn) {
-        // Trường hợp mở cổng vào 2: Thành viên đang ngoài bãi
+      if (!memberSnapshot.docs[0].data().isCurrentlyIn && memberSnapshot.docs[0].data().subscribeUntil.getTime() > new Date().getTime()) {
+        // Trường hợp mở cổng vào 2: Thành viên đang ngoài bãi va con trong thoi gian dang ky
 
         logger.info(
           `RFID: ${req} --- Type: Member --- Request: Open --- Time: ${new Date()} --- Succeed`
@@ -84,13 +84,18 @@ io.on("connection", async socket => {
         shouldOpen = 1;
         await membersRef.doc(memberSnapshot.docs[0].id).update({
           isCurrentlyIn: true,
-          lastActivity: admin.firestore.Timestamp.fromDate(new Date())
+          lastActivity: admin.firestore.Timestamp.fromDate(new Date()),
+          history: admin.firestore.FieldValue.arrayUnion(`Request: Open --- Time: ${new Date()} --- Succeed`)
         });
       } else {
         // Trường hợp không mở cổng vào 2: Thành viên đang trong bãi
         logger.info(
           `RFID: ${req} --- Type: Member --- Request: Open --- Time: ${new Date()} --- Failed`
         );
+
+        await membersRef.doc(memberSnapshot.docs[0].id).update({
+          history: admin.firestore.FieldValue.arrayUnion(`Request: Open --- Time: ${new Date()} --- Failed`)
+        });
       }
     }
     await socket.emit("enterResponse", shouldOpen);
@@ -132,7 +137,8 @@ io.on("connection", async socket => {
         shouldOpen = 1;
         await membersRef.doc(memberSnapshot.docs[0].id).update({
           isCurrentlyIn: false,
-          lastActivity: admin.firestore.Timestamp.fromDate(new Date())
+          lastActivity: admin.firestore.Timestamp.fromDate(new Date()),
+          history: admin.firestore.FieldValue.arrayUnion(`Request: Exit --- Time: ${new Date()} --- Succceed`)
         });
       } else {
         // Trường hợp không mở cổng ra 2: Thành viên đang ngoài bãi
@@ -140,6 +146,10 @@ io.on("connection", async socket => {
         logger.info(
           `RFID: ${req} --- Type: Member --- Request: Exit --- Time: ${new Date()} --- Failed`
         );
+
+        await membersRef.doc(memberSnapshot.docs[0].id).update({
+          history: admin.firestore.FieldValue.arrayUnion(`Request: Exit --- Time: ${new Date()} --- Failed`)
+        });
       }
     }
     await socket.emit("exitResponse", shouldOpen);
